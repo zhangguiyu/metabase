@@ -48,5 +48,5 @@
 (defn connection-pool-info
   "Builds a map of info about the current c3p0 connection pools managed by this Metabase instance."
   []
-  (->> (reduce conn-pool-bean-diag-info {} (jmx/mbean-names "com.mchange.v2.c3p0:type=PooledDataSource,*"))
-       (assoc {} :connection-pools)))
+  {:connection-pools
+   (reduce conn-pool-bean-diag-info {} (jmx/mbean-names "com.mchange.v2.c3p0:type=PooledDataSource,*"))})
