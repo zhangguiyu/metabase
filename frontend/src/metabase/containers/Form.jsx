@@ -232,6 +232,10 @@ export default class Form extends React.Component {
     overwriteOnInitialValuesChange: PropTypes.bool,
   };
 
+  static defaultProps = {
+    overwriteOnInitialValuesChange: false,
+  };
+
   static childContextTypes = {
     registerFormField: PropTypes.func,
     unregisterFormField: PropTypes.func,
