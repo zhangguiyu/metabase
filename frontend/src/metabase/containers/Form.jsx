@@ -229,6 +229,7 @@ export default class Form extends React.Component {
     onSubmit: PropTypes.func.isRequired,
     initialValues: PropTypes.object,
     formName: PropTypes.string,
+    overwriteOnInitialValuesChange: PropTypes.bool,
   };
 
   static childContextTypes = {
@@ -333,14 +334,14 @@ export default class Form extends React.Component {
 
   render() {
     // eslint-disable-next-line
-    const { formName } = this.props;
+    const { formName, overwriteOnInitialValuesChange } = this.props;
     const formObject = this._getFormObject();
     const initialValues = this._getInitialValues();
     const fieldNames = this._getFieldNames();
     return (
       <ReduxFormComponent
         {...this.props}
-        overwriteOnInitialValuesChange={false}
+        overwriteOnInitialValuesChange={overwriteOnInitialValuesChange}
         formObject={formObject}
         // redux-form props:
         form={formName}
