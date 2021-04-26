@@ -142,7 +142,7 @@ export default class SettingsSingleSignOnForm extends Component {
           />
           <div className="py3">
             <div className="flex align-center">
-              <p className="text-medium">{t`Allow users to sign up on their own if their Google account email address is from:`}</p>
+              <p className="text-medium">{t`Allow users to sign up on their own if their Google account email address is from (use commas to separate multiple domains):`}</p>
             </div>
             <div className="mt1 bordered rounded inline-block">
               <div className="inline-block px2 h2">@</div>
