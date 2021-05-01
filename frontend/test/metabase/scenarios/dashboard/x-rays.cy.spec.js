@@ -14,6 +14,7 @@ describe("scenarios > x-rays", () => {
   beforeEach(() => {
     restore();
     cy.signInAsAdmin();
+    cy.log("Hello");
   });
 
   it("should exist on homepage when person first signs in", () => {
