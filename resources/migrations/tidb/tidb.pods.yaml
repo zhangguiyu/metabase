@@ -1,0 +1,39 @@
+  tidb:         
+    baseImage: pingcap/tidb-arm64
+    replicas: 1 
+    service:    
+      annotations:
+        service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: 'true'   
+        service.beta.kubernetes.io/aws-load-balancer-internal: '0.0.0.0/0'
+        service.beta.kubernetes.io/aws-load-balancer-type: nlb
+      exposeStatus: true
+      externalTrafficPolicy: Local
+      type: LoadBalancer
+    config:     
+      alter-primary-key: true
+      log:      
+        level: info
+      performance:
+        max-procs: 0
+        tcp-keep-alive: true
+      experimental:
+        allow-expression-index: true  # allow lower() expressions in index
+    annotations:
+      tidb.pingcap.com/sysctl-init: "true"
+    podSecurityContext: 
+      sysctls:  
+      - name: net.ipv4.tcp_keepalive_time
+        value: "300"
+      - name: net.ipv4.tcp_keepalive_intvl
+        value: "75"
+      - name: net.core.somaxconn
+        value: "32768"
+    separateSlowLog: true
+    nodeSelector:
+      dedicated: tidb                                                                        
+    tolerations:
+    - effect: NoSchedule
+      key: dedicated 
+      operator: Equal
+      value: tidb
+
