@@ -5,6 +5,7 @@ describe("getSelectionPosition/setSelectionPosition", () => {
   beforeEach(() => {
     container = document.createElement("div");
     document.body.appendChild(container);
+    console.log("hi");
   });
   afterEach(() => {
     document.body.removeChild(container);
